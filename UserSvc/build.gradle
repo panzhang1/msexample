@@ -1,0 +1,60 @@
+plugins {
+  id "org.springframework.boot" version "2.1.6.RELEASE"
+  id "com.palantir.docker" version "0.22.1"
+}
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'idea'
+apply plugin: 'io.spring.dependency-management'
+apply plugin: 'com.palantir.docker'
+
+// This is used as the docker image prefix (org)
+group = 'pangu'
+version =  '1.0.0'
+
+docker {
+    dependsOn bootJar
+    name "${project.group}/usersvc:${project.version}"
+    files bootJar.getArchivePath()
+    dockerfile file('Dockerfile')
+    buildArgs(['BOOT_JAR': "${bootJar.getArchiveName()}"])
+}
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+repositories {
+    mavenLocal();
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springframework.boot:spring-boot-starter-actuator'
+    implementation 'org.springframework.boot:spring-boot-starter-jdbc'
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    //DB
+    implementation 'com.sap.cloud.db.jdbc:ngdbc:2.4.59'
+    implementation "com.h2database:h2"
+    implementation "org.postgresql:postgresql:42.2.8"
+
+    //DB Upgration
+    implementation 'org.flywaydb:flyway-core'
+
+    implementation 'org.springframework.cloud:spring-cloud-starter-consul-config'
+    implementation 'org.springframework.cloud:spring-cloud-starter-consul-discovery'
+    implementation 'org.springframework.cloud:spring-cloud-starter-vault-config'
+    implementation 'org.springframework.cloud:spring-cloud-starter-sleuth'
+    //Swagger
+    implementation 'io.springfox:springfox-swagger2:2.9.2'
+    implementation 'io.springfox:springfox-swagger-ui:2.9.2'
+        
+    testImplementation 'junit:junit'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+}
+
+dependencyManagement {
+    imports {
+        mavenBom "org.springframework.cloud:spring-cloud-dependencies:Greenwich.SR2"
+    }
+}

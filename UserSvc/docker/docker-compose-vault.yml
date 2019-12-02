@@ -1,0 +1,14 @@
+version: '3.2'
+services:
+  vault:
+    image: "vault"
+    hostname: "vault"
+    environment:
+      VAULT_ADDR: http://127.0.0.1:8200
+      VAULT_API_ADDR: http://127.0.0.1:8200
+      VAULT_ADDRESS: http://127.0.0.1:8200
+    ports:
+      - "8200:8200"
+    volumes:
+      - /Users/i312127/data/config:/vault/config
+    entrypoint: vault server -config=/vault/config/docker_vault_config.hcl

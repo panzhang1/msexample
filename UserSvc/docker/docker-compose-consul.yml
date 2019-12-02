@@ -1,0 +1,40 @@
+version: '3.6'
+networks:
+  byfn:
+services:
+    consul1:
+        image: consul:latest
+        container_name: consul1
+        restart: always
+        networks:
+            - byfn
+        command: agent -server -client=0.0.0.0 -bootstrap-expect=2 -node=consul1
+        volumes:
+          - /Users/i312127/data/consul1:/consul/data
+    consul2:
+        image: consul:latest
+        container_name: consul2
+        networks:
+            - byfn
+        restart: always
+        command: agent -server -client=0.0.0.0 -retry-join=consul1 -node=consul2
+        depends_on:
+            - consul1
+        volumes:
+          - /Users/i312127/data/consul2:/consul/data
+    consul3:
+        image: consul:latest
+        container_name: consul3
+        networks:
+            - byfn
+        restart: always
+        ports:
+            - "8400:8400"
+            - "8500:8500"
+            - "8600:8600"
+            - "8600:8600/udp"
+        command: agent -client=0.0.0.0 -retry-join=consul1 -ui -node=client1
+        volumes:
+          - /Users/i312127/data/consul3:/consul/data
+        depends_on:
+            - consul1

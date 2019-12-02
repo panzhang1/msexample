@@ -1,0 +1,16 @@
+version: '3.2'
+services:
+  usersvc:
+      image: pangu/usersvc
+      ports:
+        - "8082:8082"
+      environment:
+        SPRING_PROFILES_ACTIVE: "hana"
+        #SPRING_CLOUD_CONSUL_HOST: "10.58.91.136"
+        #SPRING_CLOUD_CLIENT_IP-ADDRESS: "10.59.173.53"
+  rulesvc:
+      image: pangu/rulesvc
+      ports:
+        - "8081:8081"
+      environment:
+        SPRING_PROFILES_ACTIVE: "hana"
