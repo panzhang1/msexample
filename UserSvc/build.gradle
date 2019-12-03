@@ -29,6 +29,8 @@ repositories {
 }
 
 dependencies {
+    implementation project(':FlywaySF')
+
     implementation 'org.springframework.boot:spring-boot-starter-web'
     implementation 'org.springframework.boot:spring-boot-starter-actuator'
     implementation 'org.springframework.boot:spring-boot-starter-jdbc'
@@ -36,10 +38,7 @@ dependencies {
     //DB
     implementation 'com.sap.cloud.db.jdbc:ngdbc:2.4.59'
     implementation "com.h2database:h2"
-    implementation "org.postgresql:postgresql:42.2.8"
-
-    //DB Upgration
-    implementation 'org.flywaydb:flyway-core'
+    //implementation 'org.flywaydb:flyway-core'
 
     implementation 'org.springframework.cloud:spring-cloud-starter-consul-config'
     implementation 'org.springframework.cloud:spring-cloud-starter-consul-discovery'
