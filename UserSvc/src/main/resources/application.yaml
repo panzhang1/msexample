@@ -3,8 +3,8 @@ spring:
       hibernate:
          ddl-auto: create
    flyway:
-      locations: classpath:db/migration/{vendor}
-      schemas: hop_flyway1
+      locations: classpath:db/migration/h2
+      schemas: hop_flyway
 management:
    endpoints:
       web:

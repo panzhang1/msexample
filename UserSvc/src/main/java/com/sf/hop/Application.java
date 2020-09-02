@@ -1,5 +1,7 @@
 package com.sf.hop;
 
+import com.sf.hop.config.DbPoolConfig;
+import com.sf.hop.config.PlatformJwtProperties;
 import com.sf.hop.dbupgrade.DisableAutoFlywayMigration;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -12,7 +14,7 @@ import org.springframework.context.annotation.Bean;
  *
  */
 @SpringBootApplication
-@EnableConfigurationProperties(PlatformJwtProperties.class)
+@EnableConfigurationProperties({PlatformJwtProperties.class, DbPoolConfig.class})
 public class Application {
     public static void main(String[] args) {
         SpringApplication.run(Application.class, args);

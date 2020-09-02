@@ -1,5 +1,7 @@
 package com.sf.hop;
 
+import com.sf.hop.config.DbPoolConfig;
+import com.sf.hop.config.ServiceConfig;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.junit.Test;
@@ -21,6 +23,9 @@ public class ServiceConfigTest {
 
     //@Autowired
     private VaultTemplate vaultTemplate;
+
+    @Autowired
+    private DbPoolConfig dbPoolConfig;
     
     @Test
     public void testVaultConfig() {
@@ -29,6 +34,16 @@ public class ServiceConfigTest {
         sb.append(serviceConfig.getKey1()).append("\n");
         sb.append(serviceConfig.getKey2()).append("\n");
         
+        logger.info(sb.toString());
+    }
+
+    @Test
+    public void testVaultDBConfig() {
+        StringBuilder sb = new StringBuilder("testDbVaultConfig\n");
+
+        sb.append(dbPoolConfig.getDatasources().toString()).append("\n");
+        sb.append(dbPoolConfig.getDbPool().toString()).append("\n");
+
         logger.info(sb.toString());
     }
     

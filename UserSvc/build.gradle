@@ -1,5 +1,5 @@
 plugins {
-  id "org.springframework.boot" version "2.1.6.RELEASE"
+  id "org.springframework.boot" version "2.3.0.RELEASE"
   id "com.palantir.docker" version "0.22.1"
 }
 apply plugin: 'java'
@@ -29,8 +29,6 @@ repositories {
 }
 
 dependencies {
-    implementation project(':FlywaySF')
-
     implementation 'org.springframework.boot:spring-boot-starter-web'
     implementation 'org.springframework.boot:spring-boot-starter-actuator'
     implementation 'org.springframework.boot:spring-boot-starter-jdbc'
@@ -38,7 +36,7 @@ dependencies {
     //DB
     implementation 'com.sap.cloud.db.jdbc:ngdbc:2.4.59'
     implementation "com.h2database:h2"
-    //implementation 'org.flywaydb:flyway-core'
+    implementation 'org.flywaydb:flyway-core'
 
     implementation 'org.springframework.cloud:spring-cloud-starter-consul-config'
     implementation 'org.springframework.cloud:spring-cloud-starter-consul-discovery'
@@ -48,12 +46,12 @@ dependencies {
     implementation 'io.springfox:springfox-swagger2:2.9.2'
     implementation 'io.springfox:springfox-swagger-ui:2.9.2'
         
-    testImplementation 'junit:junit'
+    testImplementation 'junit:junit:4.12'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
 }
 
 dependencyManagement {
     imports {
-        mavenBom "org.springframework.cloud:spring-cloud-dependencies:Greenwich.SR2"
+        mavenBom "org.springframework.cloud:spring-cloud-dependencies:Hoxton.SR5"
     }
 }

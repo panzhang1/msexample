@@ -10,14 +10,8 @@ spring:
          ip-address: localhost
       consul:
          enabled: false
-         host: 10.58.91.136
+         host: 10.58.90.223
          port: 8500
-         discovery:
-            serviceName: rulesvc
-            prefer-ip-address: true
-            ipAddress: ${spring.cloud.client.ip-address}
-            health-check-interval: 10s
-            health-check-url: http://${spring.cloud.client.ip-address}:${server.port}/actuator/health
          config:
             failFast: false
             format: YAML

@@ -4,26 +4,22 @@ spring:
    application:
         name: usersvc
    profiles:
-        active: hana
+        active: h2
    cloud:
       client:
          ip-address: localhost
       consul:
-         host: 10.58.91.136
+         host: 10.58.90.223
          port: 8500
          discovery:
             tags: TenantLifeCycle,ownDB
-            #serviceName: usersvc
             prefer-ip-address: true
-            #ipAddress: ${spring.cloud.client.ip-address}
-            health-check-interval: 10s
-            #health-check-url: http://${spring.cloud.client.ip-address}:${server.port}/actuator/health
          config:
             failFast: false
             format: YAML
       vault:
-         enabled: false
-         uri: http://10.58.91.136:8200
+         enabled: true
+         uri: http://10.58.90.223:8200
          #scheme: http
          #authentication: TOKEN
          token: s.SjiXMLx1MUo9OhHE0zhdfRVy

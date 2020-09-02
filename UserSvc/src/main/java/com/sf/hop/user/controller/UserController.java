@@ -1,5 +1,6 @@
 package com.sf.hop.user.controller;
 
+import com.sf.hop.config.DbPoolConfig;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,8 +9,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.sf.hop.PlatformJwtProperties;
-import com.sf.hop.ServiceConfig;
+import com.sf.hop.config.PlatformJwtProperties;
+import com.sf.hop.config.ServiceConfig;
 import com.sf.hop.user.model.User;
 import com.sf.hop.user.service.UserService;
 
@@ -28,6 +29,9 @@ public class UserController {
     
     @Autowired
     private PlatformJwtProperties jwtProperties;
+
+    @Autowired
+    private DbPoolConfig dbPoolConfig;
     
     @GetMapping(value = "/user/{userId}")
     public User getUser(@PathVariable(value="userId") String userId) {
@@ -44,8 +48,10 @@ public class UserController {
         sb.append("application_feature1:").append(serviceConfig.getAppFeature1()).append("\n");
         sb.append("application_env_feature1:").append(serviceConfig.getAppEnvFeature1()).append("\n");
         sb.append("service_feature1:").append(serviceConfig.getServiceFeature1()).append("\n");
-        sb.append("service_env_feature1:").append(serviceConfig.getServiceEnvFeature1());
-       
+        sb.append("service_env_feature1:").append(serviceConfig.getServiceEnvFeature1()).append("\n");
+        sb.append(dbPoolConfig.getDatasources().toString()).append("\n");
+        sb.append(dbPoolConfig.getDbPool().toString()).append("\n");
+
         return sb.toString();
     }
 }
