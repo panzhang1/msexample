@@ -1,0 +1,20 @@
+version: '3.6'
+
+services:
+ redis1:
+  image: publicisworldwide/redis-cluster
+  network_mode: host
+  restart: always
+  volumes:
+   - /data/redis/8001/data:/data
+  environment:
+   - REDIS_PORT=8001
+
+ redis2:
+  image: publicisworldwide/redis-cluster
+  network_mode: host
+  restart: always
+  volumes:
+   - /data/redis/8002/data:/data
+  environment:
+   - REDIS_PORT=8002
