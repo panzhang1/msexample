@@ -6,15 +6,21 @@ services:
   network_mode: host
   restart: always
   volumes:
-   - /data/redis/8001/data:/data
+   - /Users/i312127/data/redis/7000/data:/data
   environment:
-   - REDIS_PORT=8001
+    REDIS_PORT: '7000'
+  ports:
+    - '7000:7000'
+    - '17000:17000'
 
  redis2:
   image: publicisworldwide/redis-cluster
   network_mode: host
   restart: always
   volumes:
-   - /data/redis/8002/data:/data
+   - /Users/i312127/data/redis/7001/data:/data
   environment:
-   - REDIS_PORT=8002
+    REDIS_PORT: '7001'
+  ports:
+    - '7001:7001'
+    - '17001:17001'
