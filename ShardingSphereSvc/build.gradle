@@ -34,6 +34,7 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-jdbc'
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     //DB
+    implementation 'com.sap.cloud.db.jdbc:ngdbc:2.4.59'
     implementation "mysql:mysql-connector-java:8.0.19"
     //Swagger
     implementation 'io.springfox:springfox-swagger2:2.9.2'

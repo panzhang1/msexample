@@ -14,7 +14,7 @@ import com.sf.hop.user.model.User;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-@ActiveProfiles({"hana"})
+@ActiveProfiles({"mysql"})
 public class UserControllerTest {
 
     @Autowired
