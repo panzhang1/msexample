@@ -4,11 +4,10 @@ spring:
    application:
         name: usersvc
    profiles:
-        active: h2
+        active: mysql
    cloud:
-      client:
-         ip-address: localhost
       consul:
+         enabled: false
          host: 10.58.90.223
          port: 8500
          discovery:
@@ -18,7 +17,7 @@ spring:
             failFast: false
             format: YAML
       vault:
-         enabled: true
+         enabled: false
          uri: http://10.58.90.223:8200
          #scheme: http
          #authentication: TOKEN
@@ -28,4 +27,4 @@ spring:
             #backend: secret
             #profile-separator: '/'
             #default-context: application
-            #application-name: userservice
+            #application-name: usersvc

@@ -14,7 +14,7 @@ version =  '1.0.0'
 
 docker {
     dependsOn bootJar
-    name "${project.group}/rulesvc:${project.version}"
+    name "${project.group}/usersvc:${project.version}"
     files bootJar.getArchivePath()
     dockerfile file('Dockerfile')
     buildArgs(['BOOT_JAR': "${bootJar.getArchiveName()}"])
@@ -33,10 +33,14 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-actuator'
     implementation 'org.springframework.boot:spring-boot-starter-jdbc'
     implementation fileTree(include: ['*.jar'], dir: 'libs')
-    implementation 'org.springframework.cloud:spring-cloud-starter-consul-discovery'
-    implementation 'org.springframework.cloud:spring-cloud-starter-sleuth'
-    implementation 'com.sap.cloud.db.jdbc:ngdbc:2.4.59'
+    //DB
+    implementation "mysql:mysql-connector-java:8.0.19"
+    //Swagger
+    implementation 'io.springfox:springfox-swagger2:2.9.2'
+    implementation 'io.springfox:springfox-swagger-ui:2.9.2'
 
+    implementation 'org.apache.shardingsphere:shardingsphere-jdbc-core:5.0.0-alpha'
+        
     testImplementation 'junit:junit:4.12'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
 }

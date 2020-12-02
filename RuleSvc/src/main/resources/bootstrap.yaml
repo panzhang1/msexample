@@ -4,14 +4,7 @@ spring:
    application:
         name: rulersvc
    profiles:
-        active: dev
+        active: hana
    cloud:
-      client:
-         ip-address: localhost
-      consul:
-         enabled: false
-         host: 10.58.90.223
-         port: 8500
-         config:
-            failFast: false
-            format: YAML
+     consul:
+       enabled: false

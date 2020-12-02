@@ -10,7 +10,9 @@ management:
       web:
          exposure:
             include: health,info
-
+platform:
+   jwt:
+      key: xxx
 application:
    feature1: application_feature1_local
    env:

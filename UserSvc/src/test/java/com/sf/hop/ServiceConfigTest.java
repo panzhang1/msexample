@@ -5,6 +5,7 @@ import com.sf.hop.config.ServiceConfig;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.junit.Test;
+import org.junit.jupiter.api.Disabled;
 import org.junit.runner.RunWith;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -26,8 +27,9 @@ public class ServiceConfigTest {
 
     @Autowired
     private DbPoolConfig dbPoolConfig;
-    
+
     @Test
+    @Disabled
     public void testVaultConfig() {
         StringBuilder sb = new StringBuilder("testVaultConfig\n");
         
@@ -38,6 +40,7 @@ public class ServiceConfigTest {
     }
 
     @Test
+    @Disabled
     public void testVaultDBConfig() {
         StringBuilder sb = new StringBuilder("testDbVaultConfig\n");
 
@@ -46,8 +49,7 @@ public class ServiceConfigTest {
 
         logger.info(sb.toString());
     }
-    
-    //@Test
+
     public void testSpringVault() {
         VaultResponse response = vaultTemplate.read("secret/data/userservice");
         String jsonString = response.getData().get("data").toString();
@@ -61,7 +63,7 @@ public class ServiceConfigTest {
         }
         logger.info(sb.toString());
     }
-    @Test
+
     public void testServiceConfig() {
         StringBuilder sb = new StringBuilder();
         sb.append(serviceConfig.getAppFeature1()).append("\n");
