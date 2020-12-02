@@ -6,12 +6,18 @@ import org.springframework.stereotype.Service;
 
 import com.sf.hop.order.dao.OrderDAO;
 
+import java.util.List;
+
 @Service
 public class OrderService {
     @Autowired
     private OrderDAO orderDao;
     
-    public Order getOrder(String orderId) {
+    public Order getOrder(int orderId) {
         return orderDao.getOrder(orderId);
+    }
+
+    public List<Order> getAllOrders() {
+        return orderDao.getAllOrders();
     }
 }

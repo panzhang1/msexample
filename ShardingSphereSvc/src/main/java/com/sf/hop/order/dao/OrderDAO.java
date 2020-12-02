@@ -15,7 +15,7 @@ public class OrderDAO {
     @Autowired
     private JdbcTemplate jdbcTemplate;
     
-    public Order getOrder(String userId) {
+    public Order getOrder(int userId) {
         String querySql = String.format("SELECT order_id, user_id, order_desc FROM t_order WHERE order_id = ?");
 
         List<Order> users = jdbcTemplate.query( querySql, new Object[] { userId },new OrderMapper());
@@ -23,6 +23,13 @@ public class OrderDAO {
             return users.get(0);
         }
         return null;
+    }
+
+    public List<Order> getAllOrders() {
+        String querySql = "SELECT order_id, user_id, order_desc FROM t_order";
+
+        List<Order> orders = jdbcTemplate.query( querySql,new OrderMapper());
+        return orders;
     }
     
     class OrderMapper implements RowMapper<Order> {
