@@ -9,7 +9,7 @@ import java.sql.SQLException;
 
 public class YamlDataSourceFactory {
     public static DataSource newInstance() throws IOException, SQLException {
-        return YamlShardingSphereDataSourceFactory.createDataSource(getFile("/META-INF/sharding-databases-tables.yaml"));
+        return YamlShardingSphereDataSourceFactory.createDataSource(getFile("/META-INF/sharding-databases.yaml"));
     }
 
     private static File getFile(final String fileName) {

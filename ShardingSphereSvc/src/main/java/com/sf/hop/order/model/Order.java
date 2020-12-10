@@ -5,6 +5,15 @@ public class Order {
     private int userId;
     private String orderDesc;
 
+    public Order() {
+    }
+
+    public Order(int orderId, int userId, String orderDesc) {
+        this.orderId = orderId;
+        this.userId = userId;
+        this.orderDesc = orderDesc;
+    }
+
     public int getOrderId() {
         return orderId;
     }

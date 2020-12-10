@@ -6,6 +6,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.sf.hop.order.service.OrderService;
@@ -19,7 +20,6 @@ public class OrderController {
     @Autowired
     private OrderService orderService;
 
-    
     @GetMapping(value = "/order/{orderId}")
     public Order getOrder(@PathVariable(value="orderId") String orderId) {
         return orderService.getOrder(Integer.parseInt(orderId));
@@ -28,5 +28,10 @@ public class OrderController {
     @GetMapping(value = "/order/all")
     public List<Order> getAllOrders() {
         return orderService.getAllOrders();
+    }
+
+    @PostMapping(value = "/order")
+    public int addOrder(Order order) {
+        return orderService.addOrder(order);
     }
 }

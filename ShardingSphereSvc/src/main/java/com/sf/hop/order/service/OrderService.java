@@ -17,6 +17,10 @@ public class OrderService {
         return orderDao.getOrder(orderId);
     }
 
+    public int addOrder(Order order) {
+        return orderDao.addOrder(order);
+    }
+
     public List<Order> getAllOrders() {
         return orderDao.getAllOrders();
     }

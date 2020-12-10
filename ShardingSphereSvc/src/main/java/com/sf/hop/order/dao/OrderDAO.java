@@ -25,8 +25,26 @@ public class OrderDAO {
         return null;
     }
 
+    public int addOrder(Order order) {
+        String createSql = "INSERT INTO t_order(order_id, user_id, order_desc) values(?,?,?)";
+        return jdbcTemplate.update(createSql, order.getOrderId(), order.getUserId(), order.getOrderDesc());
+    }
+
+    private String inStatement(List<Integer> orderIds) {
+        StringBuilder sb = new StringBuilder();
+
+        return sb.toString();
+    }
+
+    public List<Order> getOrders(List<Integer> orderIds) {
+        String querySql = "SELECT order_id, user_id, order_desc FROM t_order WHERE order_id " + inStatement(orderIds);
+
+        List<Order> orders = jdbcTemplate.query( querySql,new OrderMapper());
+        return orders;
+    }
+
     public List<Order> getAllOrders() {
-        String querySql = "SELECT order_id, user_id, order_desc FROM t_order";
+        String querySql = "SELECT order_id, user_id, order_desc FROM t_order order by order_id";
 
         List<Order> orders = jdbcTemplate.query( querySql,new OrderMapper());
         return orders;
